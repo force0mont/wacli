@@ -1,5 +1,7 @@
 # Changelog
 
+> **Personal fork** of [steipete/wacli](https://github.com/steipete/wacli). Changes here may not be upstreamed.
+
 ## 0.5.0 - Unreleased
 
 ### Changed
