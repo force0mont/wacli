@@ -7,6 +7,7 @@
 ### Changed
 
 - Internal architecture: split store and groups command logic into focused modules for cleaner maintenance and safer follow-up changes.
+- Storage: change default store path from `~/.wacli` to `~/.config/wacli` to follow XDG base directory convention.
 
 ### Build
 
