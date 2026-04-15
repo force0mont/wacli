@@ -24,7 +24,13 @@
 - Version: bump CLI version string to `0.5.0` (unreleased).
 
 <!-- personal note: I'm primarily using this on Arch Linux; keeping an eye on the XDG path change since
-     I already have data under ~/.wacli and will need to migrate manually. -->
+     I already have data under ~/.wacli and will need to migrate manually.
+     Migration steps I plan to use:
+       mkdir -p ~/.config/wacli
+       cp -r ~/.wacli/* ~/.config/wacli/
+       # verify wacli doctor passes, then remove old dir
+       rm -rf ~/.wacli
+-->
 
 ## 0.2.0 - 2026-01-23
 
