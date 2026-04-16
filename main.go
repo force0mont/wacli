@@ -1,0 +1,44 @@
+package main
+
+import (
+	"fmt"
+	"os"
+
+	"github.com/spf13/cobra"
+)
+
+var (
+	// Version is set at build time via ldflags
+	Version = "dev"
+	// Commit is set at build time via ldflags
+	Commit = "none"
+	// Date is set at build time via ldflags
+	Date = "unknown"
+)
+
+func main() {
+	if err := rootCmd.Execute(); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
+}
+
+var rootCmd = &cobra.Command{
+	Use:   "wacli",
+	Short: "wacli - WhatsApp CLI client",
+	Long: `wacli is a command-line interface for interacting with WhatsApp.
+Send messages, manage contacts, and automate WhatsApp workflows from your terminal.`,
+	SUsage: true,
+}
+
+var versionCmd = &cobra.Command{
+	Use:   "version",
+	Short: "Print version information",
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Printf("wacli %s (commit: %s, built: %s)\n", Version, Commit, Date)
+	},
+}
+
+func init() {
+	rootCmd.AddCommand(versionCmd)
+}
