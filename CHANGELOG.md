@@ -27,13 +27,17 @@
      I already have data under ~/.wacli and will need to migrate manually.
      Migration steps I plan to use:
        mkdir -p ~/.config/wacli
-       cp -r ~/.wacli/* ~/.config/wacli/
+       cp -rL ~/.wacli/* ~/.config/wacli/
+       # note: using -rL to dereference symlinks (plain -r will silently skip them)
        # verify wacli doctor passes, then remove old dir
        rm -rf ~/.wacli
 
      Update 2026-02-10: migration went smoothly on my machine. `wacli doctor` passed on first try.
      One thing to watch: if you have a symlink at ~/.wacli the cp above won't dereference it;
-     use `cp -rL` instead.
+     use `cp -rL` instead (already reflected in the steps above).
+
+     Update 2026-02-14: confirmed the same steps work on a second machine that had a symlink
+     pointing ~/.wacli -> /mnt/data/wacli. The -rL flag is essential in that case.
 -->
 
 ## 0.2.0 - 2026-01-23
@@ -66,6 +70,4 @@
 - Contacts: search/show; import from WhatsApp store; local alias and tag management.
 - Chats: list/show with kind and last message timestamp.
 - Groups: list/refresh/info/rename; participants add/remove/promote/demote; invite link get/revoke; join/leave.
-- Diagnostics: `wacli doctor` for store path, lock status/info, auth/connection check, and FTS status.
-- CLI UX: human-readable output by default with `--json`, global `--store`/`--timeout`, plus `wacli version`.
-- Storage: default `~/.wacli`, lock file for single-instance s
+- Diagnostics: `wacli doctor` for store path, lock sta
