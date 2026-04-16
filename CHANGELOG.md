@@ -42,6 +42,11 @@
      Update 2026-02-20: also worth checking for a leftover ~/.wacli directory after migration —
      some tools (e.g. older shell aliases) may recreate it. Added a check to my .bashrc:
        [ -d ~/.wacli ] && echo "WARNING: ~/.wacli still exists, check your aliases"
+
+     Update 2026-02-28: also added a check for the old XDG_DATA_HOME fallback path in case
+     $XDG_DATA_HOME was set to a non-standard value during initial setup:
+       [ -d "${XDG_DATA_HOME:-$HOME/.local/share}/wacli" ] && echo "WARNING: old XDG_DATA_HOME path found"
+     Haven't hit this myself but a colleague on a shared machine ran into it.
 -->
 
 ## 0.2.0 - 2026-01-23
@@ -67,8 +72,4 @@
 
 - Auth: `wacli auth` QR login, bootstrap sync, optional follow, idle-exit, background media download, contacts/groups refresh.
 - Sync: non-interactive `wacli sync` once/follow, never shows QR, idle-exit, background media download, optional contacts/groups refresh.
-- Messages: list/search/show/context with chat/sender/time/media filters; FTS5 search with LIKE fallback and snippets.
-- Send: text and file (image/video/audio/document) with caption and MIME override.
-- Media: download by chat/id, resolves output paths, and records downloaded media in the DB.
-- History: on-demand backfill per chat with request count, wait, and idle-exit.
-- Conta
+- Messages: list/search/show/context with chat/sender/time/media filters; FTS5 search with LIKE fallback and sni
