@@ -38,6 +38,10 @@
 
      Update 2026-02-14: confirmed the same steps work on a second machine that had a symlink
      pointing ~/.wacli -> /mnt/data/wacli. The -rL flag is essential in that case.
+
+     Update 2026-02-20: also worth checking for a leftover ~/.wacli directory after migration —
+     some tools (e.g. older shell aliases) may recreate it. Added a check to my .bashrc:
+       [ -d ~/.wacli ] && echo "WARNING: ~/.wacli still exists, check your aliases"
 -->
 
 ## 0.2.0 - 2026-01-23
@@ -67,7 +71,4 @@
 - Send: text and file (image/video/audio/document) with caption and MIME override.
 - Media: download by chat/id, resolves output paths, and records downloaded media in the DB.
 - History: on-demand backfill per chat with request count, wait, and idle-exit.
-- Contacts: search/show; import from WhatsApp store; local alias and tag management.
-- Chats: list/show with kind and last message timestamp.
-- Groups: list/refresh/info/rename; participants add/remove/promote/demote; invite link get/revoke; join/leave.
-- Diagnostics: `wacli doctor` for store path, lock sta
+- Conta
