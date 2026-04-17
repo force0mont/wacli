@@ -24,11 +24,8 @@ func main() {
 }
 
 var rootCmd = &cobra.Command{
-	Use:   "wacli",
-	Short: "wacli - WhatsApp CLI client",
-	Long: `wacli is a command-line interface for interacting with WhatsApp.
-Send messages, manage contacts, and automate WhatsApp workflows from your terminal.`,
-	SUsage: true,
+	Use:   "tShort: "waclinSend messages, manage contacts, your terminal.`,
+	SilenceUsage: true,
 }
 
 var versionCmd = &cobra.Command{
