@@ -23,7 +23,8 @@ var rootCmd = &cobra.Command{
 	Short: "wacli — WhatsApp CLI client",
 	Long: `wacli is a command-line interface for interacting with WhatsApp.
 It allows you to send messages, manage contacts, and more from your terminal.`,
-	SilenceUsage: true,
+	SilenceUsage:  true,
+	SilenceErrors: true, // handle errors ourselves for cleaner output
 }
 
 // versionCmd prints version information.
@@ -42,7 +43,7 @@ func Execute(version, commit, date string) {
 	Date = date
 
 	if err := rootCmd.Execute(); err != nil {
-		fmt.Fprintln(os.Stderr, err)
+		fmt.Fprintf(os.Stderr, "error: %v\n", err)
 		os.Exit(1)
 	}
 }
