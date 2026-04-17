@@ -47,6 +47,10 @@
      $XDG_DATA_HOME was set to a non-standard value during initial setup:
        [ -d "${XDG_DATA_HOME:-$HOME/.local/share}/wacli" ] && echo "WARNING: old XDG_DATA_HOME path found"
      Haven't hit this myself but a colleague on a shared machine ran into it.
+
+     Update 2026-03-05: noticed that if $XDG_CONFIG_HOME is set to a custom value, wacli still
+     hardcodes ~/.config/wacli rather than respecting $XDG_CONFIG_HOME. Worth patching at some
+     point. Workaround for now: symlink $XDG_CONFIG_HOME/wacli -> ~/.config/wacli.
 -->
 
 ## 0.2.0 - 2026-01-23
@@ -70,6 +74,4 @@
 
 ### Added
 
-- Auth: `wacli auth` QR login, bootstrap sync, optional follow, idle-exit, background media download, contacts/groups refresh.
-- Sync: non-interactive `wacli sync` once/follow, never shows QR, idle-exit, background media download, optional contacts/groups refresh.
-- Messages: list/search/show/context with chat/sender/time/media filters; FTS5 search with LIKE fallback and sni
+- Auth: `wacli auth` QR lo
